@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hers</title>
+    <link rel="icon" type="image/x-icon" href="/homeFavicon.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Tangerine:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Tangerine:wght@400;700&display=swap');
+        *{
+            font-family: Montserrat;
+            user-select: none;
+        }
+        
+        body {
+            overflow-y: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            background: linear-gradient( #fa466d, #ff0d40);
+            
+        }
+        
+        h1 {
+            align-items: center;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 7vw;
+            color: #fff;
+        }
+        
+        input {
+            padding: 10px;
+            margin: 1%;
+            font-size: 1em;
+            border: 2px solid #ff0d40;
+            border-radius: 5px;
+            outline: none;
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+        
+        input:focus {
+            box-shadow: 4px 4px white;
+            border-color: #000;
+            background-color: #000;
+            color: #fff;
+        }
+        
+        button {
+            margin-top: 1%;
+            padding: 10px 20px;
+            font-size: 14px;
+            color: #fff;
+            background-color: #fa466d;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        
+        button:hover {
+            background-color: #fff;
+            color: #ff0d40;
+            border: 2px solid #ff0d40;
+            box-shadow: 0 0 20px 2px #ff0d40;
+        }
+        
+        #errorMsg {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #000;
+        }
+        ::placeholder{
+            color: #fe4970;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="title">What would you like to be called?</h1>
+    <input id="nameInput" placeholder="Enter here" name="inputName" onfocus="changePlaceholder()">
+    <button id="goButton" onclick="submitName()">Lesgoww</button>
+    <p id="errorMsg" style="display: none">You cannot pass without your name qt</p>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        gsap.from("#title", {
+            opacity: 0,
+            duration: 1.5,
+            ease: "power.inOut"
+        })
+        gsap.from("#goButton", {
+            opacity: 0,
+            duration: 0.4,
+            y: 50,
+            ease: "power.inOut"
+        })
+
+        function changePlaceholder() {
+            let input = document.getElementById('nameInput');
+            let placeholders = ["Mommyyy?", "Cutie?", "BBG?", "Future CEO?", "Queen?", "Princess?"];
+            let index = 0;
+            setInterval(() => {
+                input.placeholder = placeholders[index++ % placeholders.length];
+            }, 1000);
+        }
+
+        function submitName() {
+            let name = document.getElementById('nameInput').value.trim();
+            if (name === "") {
+                document.getElementById('errorMsg').style.display = "block";
+                gsap.from("#errorMsg", { opacity: 0, y: -10, duration: 0.5 });
+                return;
+            }
+            localStorage.setItem('userName', name);
+            window.location.href = '/lovey';
+        }
+    </script>
+</body>
+</html>

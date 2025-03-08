@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - BBG is lost</title>
+    <link rel="icon" type="image/x-icon" href="/errorFavicon.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&family=Montserrat:ital,wght@0,400;0,700;1,400&display=swap');
+        *{
+            overflow: hidden;
+            font-family: Montserrat;
+            user-select: none;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            background-color: #ff0d40;
+            text-align: center;
+        }
+        
+        h1 {    
+            color: #fff;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+        
+        p {
+            font-size: 18px;
+            color: #555;
+        }
+        
+        input {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        input:focus {
+            border-color: #ff0d40;
+        }
+        
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #ff0d40;
+            background-color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        #errorMsg {
+            margin-top: 10px;
+            font-size: 14px;
+            color: red;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>This ain't the right route sweetie</h1>
+    <button onclick="goHome()">Take Me Home Zaddyy</button>
+</body>
+<script>
+    function goHome() {
+        window.location.href = '/';
+    }
+    
+</script>
+</html>

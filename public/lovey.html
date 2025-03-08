@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthdayyy</title>
+    <link rel="icon" type="image/x-icon" href="/bdayFavicon.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&family=Montserrat:ital,wght@0,400;0,700;1,400&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #ff0d40;
+            text-align: center;
+            overflow-x: hidden;
+            overflow-y: auto;
+            padding: 0;
+            position: relative;
+            opacity: 0;
+        }
+        
+        /* Animated heading section */
+        .heading-section {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        
+        .container {
+            padding: 40px;
+            width: 90%;
+            max-width: 800px;
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 0 10px 5px rgba(255,255,255,0.3);
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+        }
+        
+        h1 {
+            margin-bottom: 20px;
+            font-size: 6vw;
+            font-family: 'Montserrat', sans-serif;
+            opacity: 0;
+            color: #000000;
+            position: relative;
+        }
+        
+        /* Animated heading styles */
+        h1 span {
+            display: inline-block;
+            transform-origin: center;
+        }
+        
+        h1 .symbol {
+            color: #ff0d40;
+            font-weight: bold;
+            position: relative;
+        }
+        
+        h1 .name {
+            color: #ff0d40;
+            position: relative;
+            display: inline-block;
+        }
+        
+        /* Heading decorations */
+        .heading-decoration {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0;
+            z-index: 2;
+        }
+        
+        .heading-wrapper {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        
+        /* Scroll hint */
+        .scroll-hint {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            opacity: 0;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.5; transform: translateX(-50%) translateY(0); }
+            50% { opacity: 0.9; transform: translateX(-50%) translateY(10px); }
+            100% { opacity: 0.5; transform: translateX(-50%) translateY(0); }
+        }
+        
+        /* Verse sections */
+        .verse-section {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 20px;
+        }
+        
+        .verse-container {
+            padding: 40px;
+            width: 100%;
+            max-width: 1000px;
+            background-color: #000;
+            border-radius: 20px;
+            box-shadow: 0 0 10px 5px rgba(0, 0, 0,0.8);
+            margin: 0 auto;
+            position: relative;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+        
+        .verse {
+            font-family: 'Tangerine', cursive;
+            font-size: 4vw;
+            color: #ff0d40;
+            text-shadow: 0 0 10px #ff0d40;
+            word-wrap: break-word;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            line-height: 1.2;
+        }
+        
+        /* Final section with button */
+        .final-section {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        
+        .final-container {
+            padding: 40px;
+            width: 100%;
+            max-width: 800px;
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 0 10px 5px rgba(255,255,255,0.8);
+            margin: 0 auto;
+            position: relative;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+        
+        /* Updated styles for the Happy Birthday message */
+        .final-container .verse {
+            font-size: 7vw; /* Make it bigger */
+            margin-bottom: 30px;
+            padding: 20px;
+            font-weight: 700;
+            text-shadow: 0 0 4px #ff0d40;
+        }
+        
+        /* Button container for multiple buttons */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        
+        button {
+            padding: 15px 25px;
+            font-size: 16px;
+            font-family: 'Montserrat', sans-serif;
+            color: white;
+            background-color: #ff0d40;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            min-width: 120px; /* Added fixed minimum width for consistency */
+        }
+        
+        button:hover {
+            transform: scale(1.05);
+        }
+        
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: 0.5s;
+            z-index: -1;
+        }
+        
+        button:hover::before {
+            left: 100%;
+        }
+        
+        /* Floating hearts in background */
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%23ffffff' d='M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z'%3E%3C/path%3E%3C/svg%3E") no-repeat center center;
+            opacity: 0.7;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        /* Background bubbles */
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 1);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        /* Media queries */
+        @media (max-width: 768px) {
+            .verse {
+                font-size: 28px;
+            }
+            
+            h1 {
+                font-size: 36px;
+            }
+            
+            .container, .verse-container, .final-container {
+                padding: 20px;
+            }
+            
+            .final-container .verse {
+                font-size: 40px;
+            }
+            
+            .button-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            button {
+                width: 80%;
+            }
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #ff0d40;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ffffff;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ffbfd1;
+        }
+        
+        /* Verse animations */
+        .verse-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Heading Section -->
+    <section class="heading-section" id="top">
+        <div class="container">
+            <div class="heading-wrapper" id="heading-wrapper">
+                <h1 id="welcomeMessage"></h1>
+            </div>
+        </div>
+        <div class="scroll-hint">Scroll down sweetheart</div>
+    </section>
+    
+    <!-- Verse sections will be dynamically added here -->
+    
+    <!-- Final Section with Button -->
+    <section class="final-section">
+        <div class="final-container" id="final-container">
+            <div class="verse">Happy Birthday, My Princess</div>
+            <div class="button-container">
+                <button id="homeButton">Home</button>
+                <button id="seeMoreButton">More</button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Load GSAP and ScrollToPlugin first -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" integrity="sha512-5ZgZ8gZ7uxkzykYOQGT9G2RAGOem6BQ/lEK9/+QAnLHn+H/rbWAZ+guZvzZ7KIXFiONvdar77Osh6DZEuHc4wQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let name = localStorage.getItem("userName") || "Halfie";
+            
+            // Poem verses - each array item will be a separate section
+            const verses = [
+            
+            `No grand gestures needed between us two,  
+            Just this honest pledge from my heart to you:  
+            To cherish each moment, both sunshine and rain,  
+            And love you completely, forever true.`,
+            
+            `Take moments for yourself amidst life's race,  
+            Rest when your body whispers for pause,  
+            You deserve the care you give to others,  
+            Love yourself first, without any clause.`,
+            
+            `Your strength inspires me every single day,  
+            Your laughter, music to my waiting ears,  
+            As candles flicker on your birthday cake,  
+            I promise to stand by you through the years.`,
+            
+            `On this special day that celebrates you,  
+            I want to remind you of one simple truth:  
+            That in this journey we walk together,  
+            Our happiness blooms, eternal youth.`,
+
+            `No fancy promises, no formalities  
+            Just love that grows with time,  
+            Your smile brightens my darkest days,  
+            Your heart, a treasure beyond any rhyme.`
+            ];
+            
+            // Create verse sections dynamically
+            createVerseSections();
+            
+            // Create animated heading
+            createAnimatedHeading();
+            
+            // Initial animations
+            gsap.to("body", { 
+                opacity: 1, 
+                duration: 1 
+            });
+            
+            // Create floating hearts and bubbles
+            createFloatingElements();
+            
+            // Set up scroll detection for verses
+            setupScrollDetection();
+            
+            // Set up button event listeners
+            document.getElementById('homeButton').addEventListener('click', goHome);
+            document.getElementById('seeMoreButton').addEventListener('click', seeMore);
+        });
+        
+        function createVerseSections() {
+            const verses = [
+                `No grand gestures needed between us two,  
+            Just this honest pledge from my heart to you:  
+            To cherish each moment, both sunshine and rain,  
+            And love you completely, forever true.`,
+                        
+            `Your strength inspires me every single day,  
+            Your laughter, music to my waiting ears,  
+            As candles flicker on your birthday cake,  
+            I promise to stand by you through the years.`,
+            
+            `Take moments for yourself amidst life's race,  
+            Rest when your body whispers for pause,  
+            You deserve the care you give to others,  
+            Love yourself first, without any clause.`,
+
+            `On this special day that celebrates you,  
+            I want to remind you of one simple truth:  
+            That in this journey we walk together,  
+            Our happiness blooms, eternal youth.`,
+
+            `No fancy promises, no formalities  
+            Just love that grows with time,  
+            Your smile brightens my darkest days,  
+            Your heart, a treasure beyond any rhyme.`
+            ];
+            
+            const headingSection = document.querySelector('.heading-section');
+            
+            verses.forEach((verse, index) => {
+                const section = document.createElement('section');
+                section.className = 'verse-section';
+                section.id = `verse-section-${index}`;
+                
+                const container = document.createElement('div');
+                container.className = 'verse-container';
+                container.id = `verse-container-${index}`;
+                
+                const verseElement = document.createElement('div');
+                verseElement.className = 'verse';
+                verseElement.innerHTML = verse.replace(/\n/g, '<br>');
+                
+                container.appendChild(verseElement);
+                section.appendChild(container);
+                
+                headingSection.after(section);
+            });
+        }
+        
+        function setupScrollDetection() {
+            const verseContainers = document.querySelectorAll('.verse-container');
+            const finalContainer = document.getElementById('final-container');
+            
+            function isElementInViewport(el) {
+                const rect = el.getBoundingClientRect();
+                return (
+                    rect.top <= (window.innerHeight * 0.75) &&
+                    rect.bottom >= (window.innerHeight * 0.25)
+                );
+            }
+            
+            function checkVisibility() {
+                verseContainers.forEach(container => {
+                    if (isElementInViewport(container)) {
+                        container.classList.add('verse-visible');
+                        
+                        // Add some floating hearts around the visible verse
+                        addFloatingElementsToContainer(container);
+                    }
+                });
+                
+                if (isElementInViewport(finalContainer)) {
+                    finalContainer.classList.add('verse-visible');
+                    
+                    // Special animation for final section
+                    if (!finalContainer.classList.contains('animated')) {
+                        finalContainer.classList.add('animated');
+                        
+                        // Animate the buttons
+                        const buttons = finalContainer.querySelectorAll('button');
+                        buttons.forEach((button, index) => {
+                            gsap.to(button, {
+                                scale: 1.1,
+                                duration: 0.5,
+                                delay: index * 0.2,
+                                repeat: 1,
+                                yoyo: true,
+                                ease: "power1.inOut"
+                            });
+                        });
+                    }
+                }
+            }
+            
+            // Initial check
+            setTimeout(checkVisibility, 500);
+            
+            // Check on scroll
+            window.addEventListener('scroll', checkVisibility);
+        }
+        
+        function addFloatingElementsToContainer(container) {
+            if (container.classList.contains('elements-added')) return;
+            container.classList.add('elements-added');
+            
+            const heartCount = 5;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heading-decoration';
+                heart.textContent = ['❤️', '✨', '💖', '🌟', '💕'][i % 5];
+                heart.style.position = 'absolute';
+                heart.style.fontSize = `${Math.random() * 10 + 15}px`;
+                heart.style.left = `${Math.random() * 80 + 10}%`;
+                heart.style.top = `${Math.random() * 80 + 10}%`;
+                heart.style.opacity = '0';
+                container.appendChild(heart);
+                
+                gsap.to(heart, {
+                    opacity: Math.random() * 0.5 + 0.3,
+                    duration: 0.5,
+                    delay: i * 0.1,
+                    onComplete: () => {
+                        gsap.to(heart, {
+                            y: Math.random() > 0.5 ? -20 : 20,
+                            x: Math.random() > 0.5 ? -10 : 10,
+                            rotation: Math.random() * 360,
+                            duration: 2 + Math.random() * 3,
+                            repeat: -1,
+                            yoyo: true,
+                            ease: "sine.inOut"
+                        });
+                    }
+                });
+            }
+        }
+        
+        function createAnimatedHeading() {
+            const headingText = "∀ Siya ∈ Moksh";
+            const headingElement = document.getElementById('welcomeMessage');
+            headingElement.innerHTML = ''; // Clear the heading
+            
+            // Split the heading into individual characters/parts
+            const parts = [
+                { text: "∀ ", class: "symbol" },
+                { text: "{", class: "symbol" },
+                { text: "Siya", class: "name" },
+                { text: "}", class: "symbol" },
+                { text: " ∈ ", class: "symbol" },
+                { text: "{", class: "symbol" },
+                { text: "Moksh", class: "name" },
+                { text: "}", class: "symbol" }
+            ];
+            
+            // Create spans for each part
+            parts.forEach((part, index) => {
+                const span = document.createElement('span');
+                span.textContent = part.text;
+                span.className = part.class;
+                span.id = `heading-part-${index}`;
+                headingElement.appendChild(span);
+            });
+            
+            // Add decorations around the heading
+            addHeadingDecorations();
+            
+            // Animate each part of the heading
+            gsap.set(headingElement, { opacity: 1 }); // Make heading visible
+            
+            // Animate each symbol with a different effect
+            gsap.fromTo('#heading-part-0', 
+                { opacity: 0, scale: 0.5, rotation: -30 }, 
+                { opacity: 1, scale: 1, rotation: 0, duration: 0.8, delay: 0.5, ease: "back.out(1.7)" }
+            );
+            
+            gsap.fromTo('#heading-part-1, #heading-part-3, #heading-part-5, #heading-part-7', 
+                { opacity: 0, y: -20 }, 
+                { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, delay: 0.7, ease: "power2.out" }
+            );
+            
+            gsap.fromTo('#heading-part-4', 
+                { opacity: 0, scale: 1.5 }, 
+                { opacity: 1, scale: 1, duration: 0.7, delay: 1.2, ease: "elastic.out(1, 0.3)" }
+            );
+            
+            // Special animation for names
+            gsap.fromTo('#heading-part-2', 
+                { opacity: 0, x: -30 }, 
+                { 
+                    opacity: 1, 
+                    x: 0, 
+                    duration: 1, 
+                    delay: 0.9, 
+                    ease: "elastic.out(1, 0.5)",
+                    onComplete: () => {
+                        // Add a heartbeat effect to Siya
+                        gsap.to('#heading-part-2', {
+                            scale: 1.1,
+                            duration: 0.5,
+                            repeat: -1,
+                            yoyo: true,
+                            ease: "sine.inOut"
+                        });
+                    }
+                }
+            );
+            
+            gsap.fromTo('#heading-part-6', 
+                { opacity: 0, x: 30 }, 
+                { 
+                    opacity: 1, 
+                    x: 0, 
+                    duration: 1, 
+                    delay: 1.4, 
+                    ease: "elastic.out(1, 0.5)",
+                    onComplete: () => {
+                        // Add a gentle floating effect to Moksh
+                        gsap.to('#heading-part-6', {
+                            y: -5,
+                            duration: 1.5,
+                            repeat: -1,
+                            yoyo: true,
+                            ease: "sine.inOut"
+                        });
+                    }
+                }
+            );
+            
+            // Show scroll hint
+            gsap.to('.scroll-hint', {
+                opacity: 1,
+                duration: 1,
+                delay: 2
+            });
+        }
+        
+        function addHeadingDecorations() {
+            const wrapper = document.getElementById('heading-wrapper');
+            const decorations = [];
+            
+            // Create 8 decorations
+            for (let i = 0; i < 8; i++) {
+                const deco = document.createElement('div');
+                deco.className = 'heading-decoration';
+                deco.textContent = decorations[i % decorations.length];
+                deco.style.left = `${10 + i * 12}%`;
+                deco.style.top = `${Math.random() > 0.5 ? -30 : 100}%`;
+                wrapper.appendChild(deco);
+                
+                // Animate each decoration
+                gsap.to(deco, {
+                    opacity: 1,
+                    delay: 1.8 + i * 0.1,
+                    duration: 0.6
+                });
+                
+                // Add continuous floating animation
+                gsap.to(deco, {
+                    y: `${Math.random() > 0.5 ? '+=' : '-='}15`,
+                    x: `${Math.random() > 0.5 ? '+=' : '-='}10`,
+                    rotation: Math.random() * 30 - 15,
+                    duration: 2 + Math.random() * 2,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut",
+                    delay: 2 + i * 0.1
+                });
+            }
+        }
+        
+        function createFloatingElements() {
+            // Create floating hearts
+            const body = document.body;
+            const heartCount = 15;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                
+                // Random size
+                const size = Math.random() * 20 + 10;
+                heart.style.width = `${size}px`;
+                heart.style.height = `${size}px`;
+                
+                // Random position
+                heart.style.left = `${Math.random() * 100}vw`;
+                heart.style.top = `${Math.random() * 100}vh`;
+                
+                // Random opacity
+                heart.style.opacity = Math.random() * 0.5 + 0.2;
+                
+                // Random color
+                heart.style.filter = `hue-rotate(${Math.random() * 30 - 15}deg)`;
+                
+                body.appendChild(heart);
+                
+                // Animate each heart
+                gsap.to(heart, {
+                    y: `-=${Math.random() * 200 + 100}`,
+                    x: `+=${Math.random() * 100 - 50}`,
+                    rotation: Math.random() * 360,
+                    duration: Math.random() * 20 + 10,
+                    repeat: -1,
+                    ease: "none",
+                    delay: Math.random() * 5
+                });
+            }
+            
+            // Create bubbles
+            const bubbleCount = 10;
+            
+            for (let i = 0; i < bubbleCount; i++) {
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
+                
+                // Random size
+                const size = Math.random() * 100 + 50;
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+                
+                // Random position
+                bubble.style.left = `${Math.random() * 100}vw`;
+                bubble.style.bottom = `-${size}px`;
+                
+                // Random opacity
+                bubble.style.opacity = Math.random() * 0.2 + 0.1;
+                
+                body.appendChild(bubble);
+                
+                // Animate each bubble
+                gsap.to(bubble, {
+                    y: `-=${window.innerHeight + size}`,
+                    x: `+=${Math.random() * 100 - 50}`,
+                    duration: Math.random() * 20 + 15,
+                    repeat: -1,
+                    ease: "none",
+                    delay: Math.random() * 5
+                });
+            }
+        }
+    
+        function goHome(e) {
+            // Add click animation
+            gsap.to(e.target, {
+                scale: 0.9,
+                duration: 0.1,
+                onComplete: () => {
+                    gsap.to(e.target, {
+                        scale: 1,
+                        duration: 0.1,
+                        onComplete: () => {
+                            // Fade out animation before redirect
+                            gsap.to("body", {
+                                opacity: 0,
+                                duration: 0.5,
+                                onComplete: () => {
+                                    window.location.href = "/";
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+        }
+        
+        function seeMore(e) {
+            // Add click animation
+            gsap.to(e.target, {
+                scale: 0.9,
+                duration: 0.1,
+                onComplete: () => {
+                    gsap.to(e.target, {
+                        scale: 1,
+                        duration: 0.1,
+                        onComplete: () => {
+                            // Fade out animation before redirect
+                            gsap.to("body", {
+                                opacity: 0,
+                                duration: 0.5,
+                                onComplete: () => {
+                                    window.location.href = "/uss";
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+        }
+        
+    </script>
+</body>
+</html>
